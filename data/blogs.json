@@ -1,0 +1,26 @@
+[
+    {
+        "id": "1",
+        "image": "/assets/blog-1.png",
+        "date": "September 26, 2026",
+        "title": "How Many Ah Does an RV Battery Need? 100Ah vs 200Ah vs 300Ah LiFePO4 Guide",
+        "desc": "How many amp-hours does your RV really need? Compare 100Ah, 200Ah and 300Ah LiFePO4 battery setups for weekend travel, appliances, boondocking, solar charging and off-grid camping.",
+        "link": "/blog-1.php"
+    },
+    {
+        "id": "2",
+        "image": "/assets/blog-2.png",
+        "date": "October 04, 2026",
+        "title": "Marine & Trolling Motor Battery Sizing: 12V vs 24V vs 36V Lithium Setup Guide",
+        "desc": "LiFePO4 and sodium-ion battery solutions for bass boats, trolling motors, marine engines, onboard sonar electronics, and all-day dependable power on the open water.",
+        "link": "/blog-2.php"
+    },
+    {
+        "id": "3",
+        "image": "/assets/yacht-battery.png",
+        "date": "October 12, 2026",
+        "title": "LiFePO4 vs Sodium-Ion in Cold Weather: Extreme Winter Temperature Performance",
+        "desc": "Comprehensive analysis of sub-zero performance, charging limits, internal heating technologies, and discharge curves in freezing climates.",
+        "link": "/blog-3.php"
+    }
+]
