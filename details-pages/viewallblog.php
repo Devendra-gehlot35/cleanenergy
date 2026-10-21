@@ -138,12 +138,12 @@
                     <?php foreach ($remainingBlogs as $blog): ?>
                         <article class="bg-white rounded-3xl border border-slate-200/90 hover:border-[#12b3d6] p-5 sm:p-6 flex flex-col justify-between shadow-xs hover:shadow-lg transition-all duration-300 group">
                             <div>
-                                <!-- Card Image Container (Large Prominent Image) -->
-                                <div class="overflow-hidden rounded-2xl mb-4 bg-slate-100 w-full shadow-xs">
-                                    <a href="<?= htmlspecialchars($blog['link']) ?>" class="block w-full">
+                                <!-- Card Image Container (Full Size matching Gallery Cards) -->
+                                <div class="overflow-hidden rounded-2xl mb-4 bg-slate-100 w-full h-64 sm:h-72 shadow-xs">
+                                    <a href="<?= htmlspecialchars($blog['link']) ?>" class="block w-full h-full">
                                         <img src="<?= htmlspecialchars(formatImgUrl($blog['image'])) ?>" 
                                              alt="<?= htmlspecialchars($blog['title']) ?>" 
-                                             class="w-full h-56 sm:h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                     </a>
                                 </div>
 

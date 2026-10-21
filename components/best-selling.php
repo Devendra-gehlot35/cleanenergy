@@ -85,21 +85,21 @@ $products = array_slice(array_values($all_products), 0, 4);
                 <div class="bg-white rounded-3xl border border-[#239B52] p-4 flex flex-col justify-between shadow-xs hover:shadow-lg transition-all duration-300 group">
 
                     <!-- =================================
-                         PRODUCT IMAGE CONTAINER
+                         PRODUCT IMAGE CONTAINER (Full Size matching Gallery Cards)
                     ================================== -->
-                    <div class="relative bg-[#f8fafc] rounded-2xl overflow-hidden mb-3.5 h-60 sm:h-64 flex items-center justify-center p-2">
+                    <div class="relative bg-[#f8fafc] rounded-2xl overflow-hidden mb-3.5 h-64 sm:h-72 flex items-center justify-center p-2">
 
                         <!-- Stock Badge -->
                         <span class="absolute top-2.5 right-2.5 z-10 px-2.5 py-1 rounded-full text-white text-[10px] font-extrabold uppercase tracking-wide shadow-xs" style="background-color: <?= $product['in_stock'] ? '#239B52' : '#DC3545' ?>;">
                             <?= $product['in_stock'] ? 'IN STOCK' : 'OUT OF STOCK' ?>
                         </span>
 
-                        <a href="<?= $safeUrl ?>" class="w-full h-full flex items-center justify-center">
+                        <a href="<?= $safeUrl ?>" class="w-full h-full flex items-center justify-center overflow-hidden">
                             <img
                                 src="<?= $safeImage ?>"
                                 alt="<?= $safeName ?>"
                                 loading="lazy"
-                                class="w-full h-full object-contain p-1 group-hover:scale-105 transition-transform duration-300"
+                                class="w-full h-full object-contain p-0 scale-105 group-hover:scale-115 transition-transform duration-300"
                             >
                         </a>
 

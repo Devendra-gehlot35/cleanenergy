@@ -48,11 +48,11 @@ if (empty($blogs)) {
                      style="border: 1.5px solid #38bdf8;">
                     
                     <div>
-                        <!-- Blog Feature Image -->
-                        <div class="overflow-hidden rounded-2xl mb-4 bg-slate-100">
+                        <!-- Blog Feature Image (Full Size matching Gallery Cards) -->
+                        <div class="overflow-hidden rounded-2xl mb-4 bg-slate-100 h-64 sm:h-72 w-full">
                             <img src="<?= htmlspecialchars($blog['image']) ?>" 
                                  alt="<?= htmlspecialchars($blog['title']) ?>" 
-                                 class="w-full h-56 sm:h-64 object-cover hover:scale-105 transition-transform duration-500">
+                                 class="w-full h-full object-cover hover:scale-105 transition-transform duration-500">
                         </div>
 
                         <!-- Date without Bullet -->

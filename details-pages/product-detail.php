@@ -254,15 +254,15 @@ $similarProducts = array_slice($similarProducts, 0, 4);
                         ?>
                         <div class="bg-white rounded-3xl border border-[#239B52] p-4 flex flex-col justify-between shadow-xs hover:shadow-md transition-all group">
                             <div>
-                                <!-- Image with Stock Badge (Restored Card Size, Enlarged Inner Image) -->
-                                <div class="relative bg-[#f8fafc] rounded-2xl overflow-hidden mb-3.5 h-48 sm:h-52 flex items-center justify-center p-1.5">
+                                <!-- Image with Stock Badge (Full Size matching Gallery Cards) -->
+                                <div class="relative bg-[#f8fafc] rounded-2xl overflow-hidden mb-3.5 h-64 sm:h-72 flex items-center justify-center p-2">
                                     <span class="absolute top-2.5 right-2.5 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider text-white z-10" style="background-color: <?= $simInStock ? '#239B52' : '#DC3545' ?>;">
                                         <?= $simInStock ? 'IN STOCK' : 'NOT IN STOCK' ?>
                                     </span>
                                     <a href="<?= htmlspecialchars($simUrl) ?>" class="w-full h-full flex items-center justify-center overflow-hidden">
                                         <img src="<?= htmlspecialchars($sim['image']) ?>" 
                                              alt="<?= htmlspecialchars($sim['title']) ?>" 
-                                             class="w-full h-full object-contain scale-115 group-hover:scale-125 transition-transform duration-300">
+                                             class="w-full h-full object-contain scale-110 group-hover:scale-120 transition-transform duration-300">
                                     </a>
                                 </div>
 

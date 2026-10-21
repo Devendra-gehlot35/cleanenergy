@@ -257,19 +257,19 @@ if (empty($categoryProducts)) {
                     ?>
                     <article class="bg-white rounded-3xl border border-[#239B52] p-4 sm:p-5 flex flex-col justify-between shadow-xs hover:shadow-lg transition-all duration-300 group">
                         <div>
-                            <!-- Inner Image Box -->
-                            <div class="relative bg-[#f8fafc] rounded-2xl p-2 flex items-center justify-center h-60 sm:h-64 mb-4 overflow-hidden">
+                            <!-- Inner Image Box (Full Size matching Gallery Cards) -->
+                            <div class="relative bg-[#f8fafc] rounded-2xl p-2 flex items-center justify-center h-64 sm:h-72 mb-4 overflow-hidden">
                                 <!-- Stock Badge (Top Right) -->
                                 <span class="absolute top-3 right-3 z-10 inline-flex items-center px-3 py-1 rounded-full text-white text-[11px] font-extrabold uppercase tracking-wide shadow-xs" style="background-color: <?= $inStock ? '#239B52' : '#DC3545' ?>;">
                                     <?= $inStock ? 'IN STOCK' : 'NOT IN STOCK' ?>
                                 </span>
 
                                 <!-- Single Centered Clean Product Photo -->
-                                <a href="<?= $safeDetailUrl ?>" class="flex items-center justify-center w-full h-full">
+                                <a href="<?= $safeDetailUrl ?>" class="flex items-center justify-center w-full h-full overflow-hidden">
                                     <img src="<?= $safeImage ?>" 
                                          alt="<?= $safeTitle ?>" 
                                          loading="lazy"
-                                         class="w-full h-full object-contain p-1 transition-transform duration-300 group-hover:scale-105">
+                                         class="w-full h-full object-contain p-0 scale-105 transition-transform duration-300 group-hover:scale-115">
                                 </a>
                             </div>
 
