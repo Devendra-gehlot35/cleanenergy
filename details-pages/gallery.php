@@ -278,19 +278,14 @@
 
     <!-- 3. Photo Lightbox Modal (Clean Full-Screen Image Only, No Content) -->
     <div id="gallery-lightbox" 
-         class="fixed inset-0 z-[9999] hidden items-center justify-center p-2 sm:p-4 md:p-6 bg-black/92 backdrop-blur-md transition-opacity duration-300 select-none">
+         class="fixed inset-0 z-[9999] hidden items-center justify-center p-4 sm:p-6 md:p-8 bg-black/90 backdrop-blur-md transition-opacity duration-300 select-none">
         
-        <!-- Close Button (Top-Right) -->
-        <button id="lightbox-close-btn" type="button" aria-label="Close Preview" 
-                class="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-all focus:outline-none cursor-pointer backdrop-blur-sm shadow-xl active:scale-95">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
+        <!-- Background Click Overlay -->
+        <div id="lightbox-backdrop" class="absolute inset-0 -z-10 cursor-pointer"></div>
 
         <!-- Previous Button (Left Side) -->
         <button id="lightbox-prev-btn" type="button" aria-label="Previous Photo" 
-                class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-all focus:outline-none cursor-pointer backdrop-blur-sm shadow-2xl active:scale-95">
+                class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-all focus:outline-none cursor-pointer backdrop-blur-md shadow-2xl active:scale-95 border border-white/20">
             <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
@@ -298,16 +293,27 @@
 
         <!-- Next Button (Right Side) -->
         <button id="lightbox-next-btn" type="button" aria-label="Next Photo" 
-                class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-all focus:outline-none cursor-pointer backdrop-blur-sm shadow-2xl active:scale-95">
+                class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-all focus:outline-none cursor-pointer backdrop-blur-md shadow-2xl active:scale-95 border border-white/20">
             <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
         </button>
 
-        <!-- Full-Screen Image Container (Pure photo only, fills the screen, zero half-card or text) -->
-        <div class="relative w-full h-full flex items-center justify-center p-2 sm:p-4 pointer-events-none">
-            <img id="lightbox-img" src="" alt="Enlarged gallery photo" 
-                 class="max-w-[95vw] max-h-[92vh] sm:max-h-[95vh] w-auto h-auto object-contain rounded-xl sm:rounded-2xl shadow-2xl pointer-events-auto transition-all duration-200">
+        <!-- Image Frame Container with Top-Right Cross Button & Breathing Room -->
+        <div class="relative max-w-[88vw] sm:max-w-[82vw] max-h-[82vh] flex items-center justify-center pointer-events-auto">
+            <div class="relative inline-flex max-w-full max-h-full">
+                <!-- Close / Cross Button (Positioned at Top-Right of the Image) -->
+                <button id="lightbox-close-btn" type="button" aria-label="Close Preview" 
+                        class="absolute -top-3.5 -right-3.5 sm:-top-4 sm:-right-4 z-50 w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white hover:bg-slate-100 text-slate-800 hover:text-red-600 flex items-center justify-center transition-all duration-200 focus:outline-none cursor-pointer shadow-2xl border border-slate-200 active:scale-95 group">
+                    <svg class="w-5 h-5 sm:w-6 sm:h-6 transition-transform duration-200 group-hover:rotate-90" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <!-- Professional Centered Photo (Does NOT touch top/bottom edges) -->
+                <img id="lightbox-img" src="" alt="Enlarged gallery photo" 
+                     class="max-w-[86vw] sm:max-w-[80vw] max-h-[75vh] sm:max-h-[78vh] w-auto h-auto object-contain rounded-2xl shadow-2xl ring-1 ring-white/20 bg-slate-900/50 block transition-all duration-200">
+            </div>
         </div>
     </div>
 
@@ -325,6 +331,7 @@
         const closeBtn = document.getElementById('lightbox-close-btn');
         const prevBtn = document.getElementById('lightbox-prev-btn');
         const nextBtn = document.getElementById('lightbox-next-btn');
+        const backdrop = document.getElementById('lightbox-backdrop');
 
         let currentIndex = 0;
         let activeFilteredIndices = galleryItems.map((_, i) => i);
@@ -392,10 +399,15 @@
             });
         });
 
-        closeBtn?.addEventListener('click', closePhoto);
+        closeBtn?.addEventListener('click', function(e) {
+            e.stopPropagation();
+            closePhoto();
+        });
+
+        backdrop?.addEventListener('click', closePhoto);
 
         lightbox?.addEventListener('click', function (e) {
-            if (e.target === lightbox || e.target.classList.contains('pointer-events-none')) {
+            if (e.target === lightbox || e.target === backdrop) {
                 closePhoto();
             }
         });
