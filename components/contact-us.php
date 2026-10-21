@@ -44,7 +44,7 @@
 
                 <!-- Contact Us Button -->
                 <div>
-                    <a href="#contact" class="inline-flex items-center justify-center px-10 py-3.5 rounded-full text-white font-semibold text-base sm:text-lg bg-[#12b3d6] hover:bg-[#0ea5e9] shadow-md shadow-cyan-500/25 transition-all duration-200">
+                    <a href="/contact.php" class="inline-flex items-center justify-center px-10 py-3.5 rounded-full text-white font-semibold text-base sm:text-lg bg-[#12b3d6] hover:bg-[#0ea5e9] shadow-md shadow-cyan-500/25 transition-all duration-200">
                         Contact Us
                     </a>
                 </div>

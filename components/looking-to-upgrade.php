@@ -17,7 +17,7 @@
             </div>
             <!-- btn2 start -->
             <div>
-                <a href="#contact" class="inline-flex items-center justify-center px-8 sm:px-10 py-3.5 sm:py-4 rounded-full border-2 border-black font-medium text-base shadow-sm transition-all duration-200 hover:bg-black hover:text-white">
+                <a href="/contact.php" class="inline-flex items-center justify-center px-8 sm:px-10 py-3.5 sm:py-4 rounded-full border-2 border-black font-medium text-base shadow-sm transition-all duration-200 hover:bg-black hover:text-white">
                     Contact Battery Expert
                 </a>
             </div>
