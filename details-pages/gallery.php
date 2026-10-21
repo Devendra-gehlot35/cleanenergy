@@ -314,48 +314,80 @@
         </div>
     </section>
 
-    <!-- 3. Photo Lightbox Modal -->
-    <div id="gallery-lightbox" class="fixed inset-0 z-[100] bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4 sm:p-6 transition-all duration-300">
-        <!-- Close Button -->
-        <button id="lightbox-close-btn" type="button" aria-label="Close Preview" class="absolute top-5 right-5 sm:top-8 sm:right-8 z-20 text-white/80 hover:text-white p-2.5 rounded-full bg-white/10 hover:bg-white/20 transition-all focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-
-        <!-- Previous Button -->
-        <button id="lightbox-prev-btn" type="button" aria-label="Previous Photo" class="absolute left-3 sm:left-6 top-1/2 -translate-y-1/2 z-20 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+    <!-- 3. Photo Lightbox Modal (Matching Website Theme UI) -->
+    <div id="gallery-lightbox" 
+         class="fixed inset-0 z-[9999] hidden items-center justify-center p-3 sm:p-6 bg-slate-950/65 backdrop-blur-sm transition-opacity duration-300">
+        
+        <!-- Previous Button (White Circular Floating Card) -->
+        <button id="lightbox-prev-btn" type="button" aria-label="Previous Photo" 
+                class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-white/95 hover:bg-white text-slate-800 hover:text-[#12b3d6] flex items-center justify-center shadow-2xl border border-slate-200/80 transition-all focus:outline-none cursor-pointer active:scale-95">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
         </button>
 
-        <!-- Next Button -->
-        <button id="lightbox-next-btn" type="button" aria-label="Next Photo" class="absolute right-3 sm:right-6 top-1/2 -translate-y-1/2 z-20 text-white/80 hover:text-white p-3 rounded-full bg-white/10 hover:bg-white/20 transition-all focus:outline-none">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+        <!-- Next Button (White Circular Floating Card) -->
+        <button id="lightbox-next-btn" type="button" aria-label="Next Photo" 
+                class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-white/95 hover:bg-white text-slate-800 hover:text-[#12b3d6] flex items-center justify-center shadow-2xl border border-slate-200/80 transition-all focus:outline-none cursor-pointer active:scale-95">
+            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
         </button>
 
-        <!-- Modal Inner Content Box -->
-        <div class="relative max-w-4xl w-full bg-slate-900 rounded-3xl overflow-hidden shadow-2xl border border-white/10 text-white flex flex-col max-h-[90vh]">
-            <!-- Image Area -->
-            <div class="relative w-full h-[320px] sm:h-[460px] bg-black flex items-center justify-center overflow-hidden">
-                <img id="lightbox-img" src="" alt="Enlarged gallery photo" class="max-w-full max-h-full object-contain">
+        <!-- Modal Dialog Box -->
+        <div id="lightbox-card" 
+             class="relative max-w-4xl lg:max-w-5xl w-full bg-white rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-slate-100 flex flex-col max-h-[92vh] transform transition-all duration-300 scale-95 opacity-0">
+            
+            <!-- Close Button (Top-Right) -->
+            <button id="lightbox-close-btn" type="button" aria-label="Close Preview" 
+                    class="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-slate-100 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all shadow-md border border-slate-200/60 focus:outline-none cursor-pointer">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <!-- Image Area (Clean Light Slate/Cyan Background) -->
+            <div class="relative w-full h-[320px] sm:h-[440px] md:h-[480px] bg-[#f8fbfd] flex items-center justify-center overflow-hidden border-b border-slate-100 p-3 sm:p-6">
+                <img id="lightbox-img" src="" alt="Enlarged gallery photo" 
+                     class="max-w-full max-h-full object-contain rounded-2xl transition-opacity duration-300">
+                
+                <!-- Category Badge over Image (Top-Left) -->
+                <div class="absolute top-4 left-4 z-20">
+                    <span id="lightbox-category" class="inline-block px-3.5 py-1 rounded-full bg-[#12b3d6] text-white text-xs font-bold shadow-md"></span>
+                </div>
             </div>
 
-            <!-- Details Bar -->
-            <div class="p-5 sm:p-7 bg-slate-900 flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-white/10">
-                <div>
-                    <span id="lightbox-category" class="inline-block px-3 py-0.5 rounded-full bg-[#12b3d6] text-white text-xs font-bold mb-2"></span>
-                    <h4 id="lightbox-title" class="text-lg sm:text-xl font-bold text-white"></h4>
-                    <p id="lightbox-specs" class="text-xs sm:text-sm text-cyan-300 font-semibold mt-1"></p>
+            <!-- Details Bar (Clean Website Matching Style) -->
+            <div class="p-6 sm:p-8 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-5">
+                <div class="max-w-2xl">
+                    <span id="lightbox-specs" class="text-xs font-bold uppercase tracking-wider text-[#12b3d6] block mb-1"></span>
+                    <h4 id="lightbox-title" class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug"></h4>
+                    <p id="lightbox-desc" class="text-slate-600 text-xs sm:text-sm leading-relaxed mt-2"></p>
+                    
+                    <!-- Feature Badges row -->
+                    <div class="flex flex-wrap items-center gap-2 mt-3.5">
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-50 border border-emerald-200/80 text-[#239B52] text-xs font-bold">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+                            </svg>
+                            Grade-A Prismatic Cells
+                        </span>
+                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-cyan-50 border border-cyan-200/80 text-[#0284c7] text-xs font-bold">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                            Smart BMS Protected
+                        </span>
+                    </div>
                 </div>
-                <button type="button" 
-                        data-open-enquiry="true"
-                        class="px-6 py-2.5 rounded-full font-bold text-xs sm:text-sm text-white bg-[#12b3d6] hover:bg-[#0ea5e9] transition-all self-start sm:self-auto shrink-0 shadow-md">
-                    Enquire Now
-                </button>
+
+                <div class="flex items-center gap-3 shrink-0">
+                    <button type="button" 
+                            data-open-enquiry="true"
+                            class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-full font-bold text-xs sm:text-sm text-white bg-[#12b3d6] hover:bg-[#0ea5e9] shadow-md shadow-cyan-500/20 transition-all cursor-pointer">
+                        Get a Quote
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -370,10 +402,12 @@
 
         // Lightbox Elements
         const lightbox = document.getElementById('gallery-lightbox');
+        const lightboxCard = document.getElementById('lightbox-card');
         const lightboxImg = document.getElementById('lightbox-img');
         const lightboxTitle = document.getElementById('lightbox-title');
         const lightboxCategory = document.getElementById('lightbox-category');
         const lightboxSpecs = document.getElementById('lightbox-specs');
+        const lightboxDesc = document.getElementById('lightbox-desc');
         const closeBtn = document.getElementById('lightbox-close-btn');
         const prevBtn = document.getElementById('lightbox-prev-btn');
         const nextBtn = document.getElementById('lightbox-next-btn');
@@ -427,17 +461,29 @@
             lightboxImg.alt = item.title;
             lightboxTitle.textContent = item.title;
             lightboxCategory.textContent = item.category_name;
-            lightboxSpecs.textContent = item.specs + ' — ' + item.desc;
+            if (lightboxSpecs) lightboxSpecs.textContent = item.specs;
+            if (lightboxDesc) lightboxDesc.textContent = item.desc;
 
             lightbox.classList.remove('hidden');
             lightbox.classList.add('flex');
             document.body.style.overflow = 'hidden';
+
+            // Smooth scale-in animation
+            setTimeout(() => {
+                lightboxCard?.classList.remove('scale-95', 'opacity-0');
+                lightboxCard?.classList.add('scale-100', 'opacity-100');
+            }, 10);
         }
 
         function closePhoto() {
-            lightbox.classList.add('hidden');
-            lightbox.classList.remove('flex');
-            document.body.style.overflow = '';
+            lightboxCard?.classList.remove('scale-100', 'opacity-100');
+            lightboxCard?.classList.add('scale-95', 'opacity-0');
+
+            setTimeout(() => {
+                lightbox.classList.add('hidden');
+                lightbox.classList.remove('flex');
+                document.body.style.overflow = '';
+            }, 200);
         }
 
         cards.forEach(card => {
