@@ -188,65 +188,27 @@
                 </button>
             </div>
 
-            <!-- Gallery Cards Grid -->
+            <!-- Gallery Cards Grid (Images Only, No Text Content) -->
             <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
                 <?php foreach ($gallery_items as $index => $item): ?>
-                    <div class="gallery-card group relative bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl transition-all duration-300 flex flex-col cursor-pointer"
+                    <div class="gallery-card group relative bg-slate-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 h-64 sm:h-72 lg:h-80 cursor-pointer"
                          data-category="<?= htmlspecialchars($item['category']) ?>"
                          data-index="<?= $index ?>">
                         
-                        <!-- Image Container with Zoom Effect -->
-                        <div class="relative w-full h-64 sm:h-72 overflow-hidden bg-slate-100">
-                            <img src="<?= htmlspecialchars($item['image']) ?>" 
-                                 alt="<?= htmlspecialchars($item['title']) ?>" 
-                                 loading="lazy"
-                                 class="w-full h-full object-cover group-hover:scale-108 transition-transform duration-700">
-                            
-                            <!-- Category Badge -->
-                            <div class="absolute top-4 left-4 z-10">
-                                <span class="inline-block px-3.5 py-1 rounded-full text-white text-xs font-bold shadow-md <?= $item['badge_color'] ?>">
-                                    <?= htmlspecialchars($item['category_name']) ?>
-                                </span>
-                            </div>
+                        <!-- Full Image -->
+                        <img src="<?= htmlspecialchars($item['image']) ?>" 
+                             alt="<?= htmlspecialchars($item['title']) ?>" 
+                             loading="lazy"
+                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
 
-                            <!-- Click to Expand Hover Overlay -->
-                            <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                                <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/95 text-slate-900 text-xs sm:text-sm font-bold shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
-                                    <svg class="w-4 h-4 text-[#12b3d6]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
-                                    </svg>
-                                    View Photo
-                                </span>
-                            </div>
+                        <!-- Hover Overlay with Zoom Icon -->
+                        <div class="absolute inset-0 bg-slate-950/25 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="w-12 h-12 rounded-full bg-white/95 text-slate-800 flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-all duration-300">
+                                <svg class="w-5 h-5 text-[#12b3d6]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7" />
+                                </svg>
+                            </span>
                         </div>
-
-                        <!-- Card Content -->
-                        <div class="p-6 sm:p-7 flex-1 flex flex-col justify-between bg-white">
-                            <div>
-                                <span class="text-xs font-bold uppercase tracking-wider text-[#12b3d6] block mb-1.5">
-                                    <?= htmlspecialchars($item['specs']) ?>
-                                </span>
-                                <h3 class="text-lg sm:text-xl font-bold text-slate-900 leading-snug group-hover:text-[#12b3d6] transition-colors mb-2.5">
-                                    <?= htmlspecialchars($item['title']) ?>
-                                </h3>
-                                <p class="text-slate-600 text-xs sm:text-sm leading-relaxed line-clamp-3">
-                                    <?= htmlspecialchars($item['desc']) ?>
-                                </p>
-                            </div>
-
-                            <div class="pt-5 mt-5 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-slate-500">
-                                <span class="inline-flex items-center gap-1.5 text-emerald-600 font-bold">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                                    </svg>
-                                    Grade-A Prismatic Cells
-                                </span>
-                                <span class="text-[#12b3d6] group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                                    Details &rarr;
-                                </span>
-                            </div>
-                        </div>
-
                     </div>
                 <?php endforeach; ?>
             </div>
@@ -314,81 +276,38 @@
         </div>
     </section>
 
-    <!-- 3. Photo Lightbox Modal (Matching Website Theme UI) -->
+    <!-- 3. Photo Lightbox Modal (Clean Full-Screen Image Only, No Content) -->
     <div id="gallery-lightbox" 
-         class="fixed inset-0 z-[9999] hidden items-center justify-center p-3 sm:p-6 bg-slate-950/65 backdrop-blur-sm transition-opacity duration-300">
+         class="fixed inset-0 z-[9999] hidden items-center justify-center p-2 sm:p-4 md:p-6 bg-black/92 backdrop-blur-md transition-opacity duration-300 select-none">
         
-        <!-- Previous Button (White Circular Floating Card) -->
+        <!-- Close Button (Top-Right) -->
+        <button id="lightbox-close-btn" type="button" aria-label="Close Preview" 
+                class="absolute top-4 right-4 sm:top-6 sm:right-6 z-50 w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-all focus:outline-none cursor-pointer backdrop-blur-sm shadow-xl active:scale-95">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+
+        <!-- Previous Button (Left Side) -->
         <button id="lightbox-prev-btn" type="button" aria-label="Previous Photo" 
-                class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-white/95 hover:bg-white text-slate-800 hover:text-[#12b3d6] flex items-center justify-center shadow-2xl border border-slate-200/80 transition-all focus:outline-none cursor-pointer active:scale-95">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                class="absolute left-2 sm:left-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-all focus:outline-none cursor-pointer backdrop-blur-sm shadow-2xl active:scale-95">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
             </svg>
         </button>
 
-        <!-- Next Button (White Circular Floating Card) -->
+        <!-- Next Button (Right Side) -->
         <button id="lightbox-next-btn" type="button" aria-label="Next Photo" 
-                class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-30 w-11 h-11 sm:w-13 sm:h-13 rounded-full bg-white/95 hover:bg-white text-slate-800 hover:text-[#12b3d6] flex items-center justify-center shadow-2xl border border-slate-200/80 transition-all focus:outline-none cursor-pointer active:scale-95">
-            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                class="absolute right-2 sm:right-6 top-1/2 -translate-y-1/2 z-50 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-white/20 hover:bg-white/35 text-white flex items-center justify-center transition-all focus:outline-none cursor-pointer backdrop-blur-sm shadow-2xl active:scale-95">
+            <svg class="w-6 h-6 sm:w-7 sm:h-7" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
             </svg>
         </button>
 
-        <!-- Modal Dialog Box -->
-        <div id="lightbox-card" 
-             class="relative max-w-4xl lg:max-w-5xl w-full bg-white rounded-3xl sm:rounded-[36px] overflow-hidden shadow-2xl border border-slate-100 flex flex-col max-h-[92vh] transform transition-all duration-300 scale-95 opacity-0">
-            
-            <!-- Close Button (Top-Right) -->
-            <button id="lightbox-close-btn" type="button" aria-label="Close Preview" 
-                    class="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-white/90 hover:bg-slate-100 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all shadow-md border border-slate-200/60 focus:outline-none cursor-pointer">
-                <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-            </button>
-
-            <!-- Image Area (Clean Light Slate/Cyan Background) -->
-            <div class="relative w-full h-[320px] sm:h-[440px] md:h-[480px] bg-[#f8fbfd] flex items-center justify-center overflow-hidden border-b border-slate-100 p-3 sm:p-6">
-                <img id="lightbox-img" src="" alt="Enlarged gallery photo" 
-                     class="max-w-full max-h-full object-contain rounded-2xl transition-opacity duration-300">
-                
-                <!-- Category Badge over Image (Top-Left) -->
-                <div class="absolute top-4 left-4 z-20">
-                    <span id="lightbox-category" class="inline-block px-3.5 py-1 rounded-full bg-[#12b3d6] text-white text-xs font-bold shadow-md"></span>
-                </div>
-            </div>
-
-            <!-- Details Bar (Clean Website Matching Style) -->
-            <div class="p-6 sm:p-8 bg-white flex flex-col sm:flex-row sm:items-center justify-between gap-5">
-                <div class="max-w-2xl">
-                    <span id="lightbox-specs" class="text-xs font-bold uppercase tracking-wider text-[#12b3d6] block mb-1"></span>
-                    <h4 id="lightbox-title" class="text-xl sm:text-2xl font-extrabold text-slate-900 leading-snug"></h4>
-                    <p id="lightbox-desc" class="text-slate-600 text-xs sm:text-sm leading-relaxed mt-2"></p>
-                    
-                    <!-- Feature Badges row -->
-                    <div class="flex flex-wrap items-center gap-2 mt-3.5">
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-emerald-50 border border-emerald-200/80 text-[#239B52] text-xs font-bold">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
-                            </svg>
-                            Grade-A Prismatic Cells
-                        </span>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-cyan-50 border border-cyan-200/80 text-[#0284c7] text-xs font-bold">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-                            </svg>
-                            Smart BMS Protected
-                        </span>
-                    </div>
-                </div>
-
-                <div class="flex items-center gap-3 shrink-0">
-                    <button type="button" 
-                            data-open-enquiry="true"
-                            class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-3.5 rounded-full font-bold text-xs sm:text-sm text-white bg-[#12b3d6] hover:bg-[#0ea5e9] shadow-md shadow-cyan-500/20 transition-all cursor-pointer">
-                        Get a Quote
-                    </button>
-                </div>
-            </div>
+        <!-- Full-Screen Image Container (Pure photo only, fills the screen, zero half-card or text) -->
+        <div class="relative w-full h-full flex items-center justify-center p-2 sm:p-4 pointer-events-none">
+            <img id="lightbox-img" src="" alt="Enlarged gallery photo" 
+                 class="max-w-[95vw] max-h-[92vh] sm:max-h-[95vh] w-auto h-auto object-contain rounded-xl sm:rounded-2xl shadow-2xl pointer-events-auto transition-all duration-200">
         </div>
     </div>
 
@@ -402,12 +321,7 @@
 
         // Lightbox Elements
         const lightbox = document.getElementById('gallery-lightbox');
-        const lightboxCard = document.getElementById('lightbox-card');
         const lightboxImg = document.getElementById('lightbox-img');
-        const lightboxTitle = document.getElementById('lightbox-title');
-        const lightboxCategory = document.getElementById('lightbox-category');
-        const lightboxSpecs = document.getElementById('lightbox-specs');
-        const lightboxDesc = document.getElementById('lightbox-desc');
         const closeBtn = document.getElementById('lightbox-close-btn');
         const prevBtn = document.getElementById('lightbox-prev-btn');
         const nextBtn = document.getElementById('lightbox-next-btn');
@@ -451,7 +365,7 @@
             });
         });
 
-        // Open Lightbox
+        // Open Lightbox (Full Screen Photo Only)
         function showPhoto(index) {
             if (!galleryItems[index]) return;
             currentIndex = index;
@@ -459,31 +373,16 @@
 
             lightboxImg.src = item.image;
             lightboxImg.alt = item.title;
-            lightboxTitle.textContent = item.title;
-            lightboxCategory.textContent = item.category_name;
-            if (lightboxSpecs) lightboxSpecs.textContent = item.specs;
-            if (lightboxDesc) lightboxDesc.textContent = item.desc;
 
             lightbox.classList.remove('hidden');
             lightbox.classList.add('flex');
             document.body.style.overflow = 'hidden';
-
-            // Smooth scale-in animation
-            setTimeout(() => {
-                lightboxCard?.classList.remove('scale-95', 'opacity-0');
-                lightboxCard?.classList.add('scale-100', 'opacity-100');
-            }, 10);
         }
 
         function closePhoto() {
-            lightboxCard?.classList.remove('scale-100', 'opacity-100');
-            lightboxCard?.classList.add('scale-95', 'opacity-0');
-
-            setTimeout(() => {
-                lightbox.classList.add('hidden');
-                lightbox.classList.remove('flex');
-                document.body.style.overflow = '';
-            }, 200);
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
+            document.body.style.overflow = '';
         }
 
         cards.forEach(card => {
@@ -496,7 +395,7 @@
         closeBtn?.addEventListener('click', closePhoto);
 
         lightbox?.addEventListener('click', function (e) {
-            if (e.target === lightbox) {
+            if (e.target === lightbox || e.target.classList.contains('pointer-events-none')) {
                 closePhoto();
             }
         });
