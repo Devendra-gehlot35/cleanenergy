@@ -234,27 +234,64 @@ function load_gallery_items() {
     foreach ($lines as $line) {
         if (empty(trim($line))) continue;
         $row = str_getcsv($line);
-        if (empty($row) || empty(trim($row[0]))) continue;
+        if (empty($row)) continue;
 
-        // Check if header row
-        $first_col = strtolower(trim($row[0]));
-        if ($is_first_row && (strpos($first_col, 'image') !== false || strpos($first_col, 'url') !== false || strpos($first_col, 'link') !== false || strpos($first_col, 'photo') !== false)) {
+        // Check if header row (skip if contains S.No, ID, URL, Image, Link)
+        $row_str = strtolower(implode(' ', $row));
+        if ($is_first_row && (
+            strpos($row_str, 'url') !== false || 
+            strpos($row_str, 'image') !== false || 
+            strpos($row_str, 'photo') !== false || 
+            strpos($row_str, 'serial') !== false || 
+            strpos($row_str, 's.no') !== false || 
+            strpos($row_str, 'sno') !== false || 
+            strpos($row_str, 'link') !== false
+        )) {
             $is_first_row = false;
             continue;
         }
         $is_first_row = false;
 
-        $image_url = trim($row[0]);
-        // Ignore row if not an image link
+        $col0 = trim($row[0] ?? '');
+        $col1 = trim($row[1] ?? '');
+        $image_url = '';
+
+        // Detect if Col 1 is Image URL (when Format is S.No | Image URL)
+        if (!empty($col1) && (
+            strpos($col1, 'http') === 0 || 
+            strpos($col1, '/assets/') === 0 || 
+            strpos($col1, 'drive.google.com') !== false ||
+            preg_match('/\.(png|jpe?g|webp|gif|svg|avif)/i', $col1)
+        )) {
+            $image_url = $col1;
+        } 
+        // Detect if Col 0 is Image URL (when Format is Image URL | S.No or single column)
+        elseif (!empty($col0) && !is_numeric($col0) && (
+            strpos($col0, 'http') === 0 || 
+            strpos($col0, '/assets/') === 0 || 
+            strpos($col0, 'drive.google.com') !== false ||
+            preg_match('/\.(png|jpe?g|webp|gif|svg|avif)/i', $col0)
+        )) {
+            $image_url = $col0;
+        }
+
+        // Ignore row if no valid image URL found
         if (empty($image_url) || $image_url === '#') continue;
 
-        $raw_category = isset($row[1]) ? trim($row[1]) : '';
+        // Google Drive link auto-converter to direct image view
+        if (preg_match('#drive\.google\.com/file/d/([a-zA-Z0-9_-]+)#', $image_url, $gDriveMatches)) {
+            $image_url = "https://drive.google.com/uc?export=view&id={$gDriveMatches[1]}";
+        } elseif (preg_match('#drive\.google\.com/open\?id=([a-zA-Z0-9_-]+)#', $image_url, $gDriveMatches)) {
+            $image_url = "https://drive.google.com/uc?export=view&id={$gDriveMatches[1]}";
+        }
+
+        $raw_category = isset($row[2]) ? trim($row[2]) : (isset($row[1]) && !is_numeric($row[1]) && $row[1] !== $image_url ? trim($row[1]) : '');
         $category = normalize_gallery_category($raw_category);
         $category_name = get_gallery_category_name($category);
 
-        $title = isset($row[2]) && !empty(trim($row[2])) ? trim($row[2]) : "CleanErgy {$category_name} Installation";
-        $desc = isset($row[3]) && !empty(trim($row[3])) ? trim($row[3]) : 'High-performance LiFePO4 battery installation engineered for reliable clean power.';
-        $specs = isset($row[4]) && !empty(trim($row[4])) ? trim($row[4]) : 'LiFePO4 Lithium Power System';
+        $title = isset($row[3]) && !empty(trim($row[3])) ? trim($row[3]) : "CleanErgy Battery Installation";
+        $desc = isset($row[4]) && !empty(trim($row[4])) ? trim($row[4]) : 'High-performance LiFePO4 battery installation engineered for reliable clean power.';
+        $specs = isset($row[5]) && !empty(trim($row[5])) ? trim($row[5]) : 'LiFePO4 Lithium Power System';
 
         $parsed_items[] = [
             'id' => $item_id++,

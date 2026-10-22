@@ -13,9 +13,9 @@
  */
 
 return [
-    // Paste your Google Sheet URL or published CSV link here:
-    'sheet_url' => '',
+    // Google Sheet URL provided by user
+    'sheet_url' => 'https://docs.google.com/spreadsheets/d/10gnvNYIbIaRIdKixUUNXOPdEVUo9Ts76bZWJ6rNgXkA/edit?usp=sharing',
     
-    // Cache duration in seconds (e.g. 60 = 1 minute)
+    // Cache duration in seconds (60 seconds)
     'cache_ttl' => 60,
 ];
