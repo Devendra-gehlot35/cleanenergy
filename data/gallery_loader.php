@@ -145,7 +145,7 @@ function format_google_sheet_csv_url($url) {
         $sheet_id = $matches[1];
         // Check for specific gid (sheet tab)
         $gid = '0';
-        if (preg_match('#[#&?]gid=([0-9]+)#', $url, $gid_matches)) {
+        if (preg_match('~[#&?]gid=([0-9]+)~', $url, $gid_matches)) {
             $gid = $gid_matches[1];
         }
         return "https://docs.google.com/spreadsheets/d/{$sheet_id}/export?format=csv&gid={$gid}";
