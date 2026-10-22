@@ -158,6 +158,18 @@ function format_google_sheet_csv_url($url) {
  * Fetches and parses gallery items from Google Sheet
  */
 function load_gallery_items() {
+    // 1. Check local managed gallery items JSON first
+    $json_file = __DIR__ . '/gallery_items.json';
+    if (file_exists($json_file)) {
+        $data = @file_get_contents($json_file);
+        if (!empty($data)) {
+            $parsed = json_decode($data, true);
+            if (is_array($parsed) && count($parsed) > 0) {
+                return $parsed;
+            }
+        }
+    }
+
     $config_file = __DIR__ . '/gallery_config.php';
     $config = file_exists($config_file) ? include $config_file : [];
     

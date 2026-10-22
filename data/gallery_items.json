@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "title": "Marine & Yacht Deep-Water Power Bank",
+        "category": "marine",
+        "category_name": "Marine & Boats",
+        "image": "/assets/yacht-faq.png",
+        "specs": "51.2V 105Ah Lithium Iron Phosphate Bank",
+        "desc": "High-reliability dual battery bank installation powering luxury catamaran house loads.",
+        "badge_color": "bg-[#12b3d6]"
+    },
+    {
+        "id": 2,
+        "title": "Off-Grid Adventure Van Boondocking Setup",
+        "category": "rv",
+        "category_name": "RVs & Campers",
+        "image": "https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=1400&q=80",
+        "specs": "12.8V 300Ah High-Capacity System",
+        "desc": "Custom campervan integration supporting high-draw induction cooktops.",
+        "badge_color": "bg-[#0ea5e9]"
+    },
+    {
+        "id": 3,
+        "title": "Residential Solar Clean Energy Storage Hub",
+        "category": "solar",
+        "category_name": "Solar & Home Energy",
+        "image": "https://images.unsplash.com/photo-1509391365360-2e959784a276?auto=format&fit=crop&w=1400&q=80",
+        "specs": "48V Multi-Unit Wall Bank",
+        "desc": "Seamless whole-home backup and net-metering energy storage system.",
+        "badge_color": "bg-[#239B52]"
+    },
+    {
+        "id": 4,
+        "title": "All-Weather Mountain Cabin Energy Station",
+        "category": "offgrid",
+        "category_name": "Off-Grid & Cabins",
+        "image": "https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1400&q=80",
+        "specs": "Self-Heating Cold Weather LiFePO4 Units",
+        "desc": "Sub-zero capable lithium system providing consistent 120V/240V split-phase power.",
+        "badge_color": "bg-[#12b3d6]"
+    },
+    {
+        "id": 5,
+        "title": "Commercial Electric Golf Cart & Utility Fleet",
+        "category": "fleet",
+        "category_name": "Specialized & Fleet",
+        "image": "https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1400&q=80",
+        "specs": "48V 105Ah Drop-In Conversion",
+        "desc": "Lightweight lithium conversion replacing bulky 6V lead-acid batteries.",
+        "badge_color": "bg-[#0284c7]"
+    },
+    {
+        "id": 6,
+        "title": "Professional Bass Fishing Trolling Motor Bank",
+        "category": "marine",
+        "category_name": "Marine & Boats",
+        "image": "https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1400&q=80",
+        "specs": "36V (3x 12V 100Ah Series) Setup",
+        "desc": "Tournament-grade lightweight battery pack maintaining steady voltage.",
+        "badge_color": "bg-[#12b3d6]"
+    },
+    {
+        "id": 7,
+        "title": "Catamaran Luxury Marine Energy System",
+        "category": "marine",
+        "category_name": "Marine & Boats",
+        "image": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80",
+        "specs": "48V 200Ah High-Efficiency Marine Lithium",
+        "desc": "Offshore catamaran battery installation powering luxury loads.",
+        "badge_color": "bg-[#12b3d6]"
+    },
+    {
+        "id": 8,
+        "title": "High-Capacity Off-Grid Solar Ground Mount",
+        "category": "solar",
+        "category_name": "Solar & Home Energy",
+        "image": "https://images.unsplash.com/photo-1508873696983-2df5293cb395?auto=format&fit=crop&w=1400&q=80",
+        "specs": "51.2V 400Ah Multi-Rack Industrial Lithium",
+        "desc": "Turnkey solar array pairing high-efficiency PV panels with industrial storage.",
+        "badge_color": "bg-[#239B52]"
+    }
+]
