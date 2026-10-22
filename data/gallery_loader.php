@@ -205,6 +205,21 @@ function load_gallery_items() {
         return get_default_gallery_items();
     }
 
+    // Check if response is HTML (Google sign-in page, permission denied, etc.)
+    $trimmed_check = strtolower(substr(ltrim((string)$csv_content), 0, 150));
+    if (strpos($trimmed_check, '<!doctype') !== false || 
+        strpos($trimmed_check, '<html') !== false || 
+        strpos($trimmed_check, '<head') !== false || 
+        strpos((string)$csv_content, 'accounts.google.com') !== false || 
+        strpos((string)$csv_content, 'ServiceLogin') !== false) {
+        if (file_exists($cache_file)) {
+            $cached_data = @file_get_contents($cache_file);
+            $items = json_decode($cached_data, true);
+            if (is_array($items) && count($items) > 0) return $items;
+        }
+        return get_default_gallery_items();
+    }
+
     // Parse CSV
     $lines = preg_split('/\r\n|\r|\n/', trim($csv_content));
     $parsed_items = [];
@@ -225,8 +240,14 @@ function load_gallery_items() {
         $is_first_row = false;
 
         $image_url = trim($row[0]);
-        // Ignore row if not an image link
+        // Ignore row if not a valid image link
         if (empty($image_url) || $image_url === '#') continue;
+        if (!preg_match('#^(https?://|/assets/|/images/|/|\./)#i', $image_url) || 
+            strpos($image_url, '<') !== false || 
+            strpos($image_url, '>') !== false || 
+            strpos($image_url, ' ') !== false) {
+            continue;
+        }
 
         $raw_category = isset($row[1]) ? trim($row[1]) : '';
         $category = normalize_gallery_category($raw_category);
