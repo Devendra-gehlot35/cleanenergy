@@ -152,7 +152,7 @@ $gallery_items = load_gallery_items();
 
 <!-- MAIN GALLERY SECTION (EXACT UI FROM USER REFERENCE) -->
 <main class="flex-1 pt-28 sm:pt-36 pb-16 sm:pb-24 bg-[#f4f6fa] text-slate-900">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         <!-- TITLE: OUR GALLERY -->
         <div class="text-center mb-6 sm:mb-8">
