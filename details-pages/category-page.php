@@ -197,7 +197,7 @@ if (empty($categoryProducts)) {
     ?>
 
     <!-- 1. Hero Banner with Edge-to-Edge Visual and Breadcrumb -->
-    <section class="relative w-full min-h-[560px] sm:min-h-[640px] h-[88vh] sm:h-[92vh] max-h-[960px] overflow-hidden bg-slate-900 flex items-center">
+    <section class="relative w-full min-h-[580px] sm:min-h-[660px] h-[92vh] sm:h-screen max-h-[1000px] overflow-hidden bg-slate-900 flex items-center">
         <!-- Background Image Edge-to-Edge -->
         <img src="<?= htmlspecialchars($bannerImg) ?>" 
              alt="<?= htmlspecialchars($categoryTitle) ?> Banner" 
