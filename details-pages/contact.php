@@ -17,7 +17,7 @@
     ?>
 
     <!-- 1. Hero Banner (Natural Image without Blue Overlay) -->
-    <section class="relative w-full min-h-[580px] sm:min-h-[660px] h-[92vh] sm:h-screen max-h-[1000px] overflow-hidden flex items-center justify-center text-center bg-slate-900">
+    <section class="relative w-full min-h-[460px] sm:min-h-[560px] md:min-h-[640px] lg:min-h-[700px] h-auto sm:h-[85vh] md:h-screen md:max-h-[1000px] overflow-hidden flex items-center justify-center text-center bg-slate-900">
         
         <!-- Clean Background Image (No blue tint / overlay) -->
         <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2070&q=80" 
@@ -29,7 +29,7 @@
 
         <!-- Big Centered "Contact Us" Title (Exact PDF Match) -->
         <div class="relative z-10 px-4 pt-16">
-            <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black text-white italic tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
+            <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white italic tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
                 Contact Us
             </h1>
         </div>
