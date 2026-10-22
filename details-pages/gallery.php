@@ -161,22 +161,8 @@ $gallery_items = load_gallery_items();
             </h1>
         </div>
 
-        <!-- TOP BUTTONS: ADD IMAGES / ADD VIDEOS -->
-        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
-            <button type="button" 
-                    class="gallery-tab-btn px-6 sm:px-7 py-2.5 sm:py-3 rounded text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm bg-[#12b3d6] text-white shadow-cyan-500/25" 
-                    data-tab="images">
-                ADD IMAGES
-            </button>
-            <button type="button" 
-                    class="gallery-tab-btn px-6 sm:px-7 py-2.5 sm:py-3 rounded text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm bg-slate-900 text-white hover:bg-[#12b3d6]" 
-                    data-tab="videos">
-                ADD VIDEOS
-            </button>
-        </div>
-
         <!-- 4-COLUMN SQUARE IMAGE GRID -->
-        <div id="gallery-grid-images" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-5 mb-8 sm:mb-12">
+        <div id="gallery-grid-images" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-5">
             <?php foreach ($gallery_items as $index => $item): ?>
                 <button type="button"
                         class="gallery-card group relative block w-full aspect-square bg-slate-200 rounded-md sm:rounded-lg overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-[#12b3d6]"
@@ -197,65 +183,6 @@ $gallery_items = load_gallery_items();
                     </span>
                 </button>
             <?php endforeach; ?>
-        </div>
-
-        <!-- 4-COLUMN SQUARE VIDEOS GRID (SHOWN ON ADD VIDEOS TAB) -->
-        <div id="gallery-grid-videos" class="hidden grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-5 mb-8 sm:mb-12">
-            <?php
-            $installation_videos = [
-                [
-                    'title' => 'Catamaran 48V Marine Lithium Bank Install',
-                    'thumb' => '/assets/yacht-faq.png'
-                ],
-                [
-                    'title' => 'Off-Grid Cabin Cold-Weather Battery Tour',
-                    'thumb' => 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1400&q=80'
-                ],
-                [
-                    'title' => 'Campervan High-Power Induction & 12V A/C Test',
-                    'thumb' => 'https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=1400&q=80'
-                ],
-                [
-                    'title' => 'Commercial Golf Cart 48V Drop-in Conversion',
-                    'thumb' => 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1400&q=80'
-                ]
-            ];
-            ?>
-            <?php foreach ($installation_videos as $vIndex => $vid): ?>
-                <div class="group relative block w-full aspect-square bg-slate-900 rounded-md sm:rounded-lg overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 text-left">
-                    <img src="<?= htmlspecialchars($vid['thumb'], ENT_QUOTES, 'UTF-8') ?>"
-                         alt="<?= htmlspecialchars($vid['title'], ENT_QUOTES, 'UTF-8') ?>"
-                         loading="lazy"
-                         class="w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
-                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-between p-3 sm:p-4">
-                        <span class="self-end px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider bg-[#12b3d6] text-white">
-                            Video
-                        </span>
-                        <div class="text-white text-center">
-                            <div class="w-11 h-11 rounded-full bg-white text-[#12b3d6] flex items-center justify-center mx-auto mb-2 shadow-lg group-hover:scale-110 transition-transform">
-                                <svg class="w-5 h-5 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
-                                    <path d="M8 5v14l11-7z"/>
-                                </svg>
-                            </div>
-                            <p class="text-xs sm:text-sm font-bold line-clamp-1"><?= htmlspecialchars($vid['title'], ENT_QUOTES, 'UTF-8') ?></p>
-                        </div>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
-
-        <!-- BOTTOM BUTTONS: ADD IMAGES / ADD VIDEOS (EXACT REPEAT AS IN SCREENSHOT) -->
-        <div class="flex items-center justify-center gap-3 sm:gap-4">
-            <button type="button" 
-                    class="gallery-tab-btn px-6 sm:px-7 py-2.5 sm:py-3 rounded text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm bg-[#12b3d6] text-white shadow-cyan-500/25" 
-                    data-tab="images">
-                ADD IMAGES
-            </button>
-            <button type="button" 
-                    class="gallery-tab-btn px-6 sm:px-7 py-2.5 sm:py-3 rounded text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm bg-slate-900 text-white hover:bg-[#12b3d6]" 
-                    data-tab="videos">
-                ADD VIDEOS
-            </button>
         </div>
 
     </div>
@@ -398,9 +325,6 @@ document.addEventListener('DOMContentLoaded', function () {
         JSON_INVALID_UTF8_SUBSTITUTE
     ) ?>;
 
-    const tabBtns = document.querySelectorAll('.gallery-tab-btn');
-    const imagesGrid = document.getElementById('gallery-grid-images');
-    const videosGrid = document.getElementById('gallery-grid-videos');
     const cards = document.querySelectorAll('.gallery-card');
 
     const lightbox = document.getElementById('gallery-lightbox');
@@ -413,36 +337,6 @@ document.addEventListener('DOMContentLoaded', function () {
     let activeFilteredIndices = galleryItems.map((_, index) => index);
     let previousFocus = null;
     let previousBodyOverflow = '';
-
-    // TAB SWITCHING LOGIC (ADD IMAGES / ADD VIDEOS)
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', function () {
-            const tab = this.getAttribute('data-tab');
-
-            tabBtns.forEach(b => {
-                const bTab = b.getAttribute('data-tab');
-                if (bTab === tab) {
-                    b.classList.remove('bg-slate-900', 'hover:bg-[#12b3d6]');
-                    b.classList.add('bg-[#12b3d6]', 'text-white', 'shadow-cyan-500/25');
-                } else {
-                    b.classList.remove('bg-[#12b3d6]', 'shadow-cyan-500/25');
-                    b.classList.add('bg-slate-900', 'text-white', 'hover:bg-[#12b3d6]');
-                }
-            });
-
-            if (tab === 'videos') {
-                imagesGrid?.classList.add('hidden');
-                imagesGrid?.classList.remove('grid');
-                videosGrid?.classList.remove('hidden');
-                videosGrid?.classList.add('grid');
-            } else {
-                videosGrid?.classList.add('hidden');
-                videosGrid?.classList.remove('grid');
-                imagesGrid?.classList.remove('hidden');
-                imagesGrid?.classList.add('grid');
-            }
-        });
-    });
 
     // OPEN / UPDATE PHOTO
     function showPhoto(index) {
