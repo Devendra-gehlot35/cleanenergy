@@ -150,126 +150,114 @@ require_once __DIR__ . '/../data/gallery_loader.php';
 $gallery_items = load_gallery_items();
 ?>
 
-<!-- HERO BANNER -->
-<section class="relative w-full min-h-[580px] sm:min-h-[660px] h-[92vh] sm:h-screen max-h-[1000px] overflow-hidden flex items-center justify-center text-center bg-slate-900">
+<!-- MAIN GALLERY SECTION (EXACT UI FROM USER REFERENCE) -->
+<main class="flex-1 pt-28 sm:pt-36 pb-16 sm:pb-24 bg-[#f4f6fa] text-slate-900">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
 
-    <img
-        src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2070&q=80"
-        alt="Clean Energy Water Background"
-        class="absolute inset-0 w-full h-full object-cover object-center">
-
-    <div class="absolute inset-0 bg-black/25"></div>
-
-    <div class="relative z-10 px-4 pt-16">
-        <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black text-white italic tracking-wide drop-shadow-[0_4px_16px_rgba(0,0,0,0.5)]">
-            Our Gallery
-        </h1>
-
-        <p class="text-white/90 text-base sm:text-xl font-medium max-w-2xl mx-auto mt-4 drop-shadow">
-            Real-world installations, marine voyages, RV adventures & clean energy systems.
-        </p>
-    </div>
-</section>
-
-<!-- MAIN GALLERY SECTION -->
-<main class="flex-1 py-16 sm:py-20 lg:py-24 bg-white text-slate-900">
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
-        <!-- SECTION HEADER -->
-        <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
-
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#d7f3fb] text-slate-800 text-xs sm:text-sm font-semibold mb-4">
-                CleanErgy in Action
-            </div>
-
-            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight mb-4">
-                Explore Real-World
-                <span style="color: #12b3d6;">Battery Installations</span>
-            </h2>
-
-            <p class="text-slate-600 text-base sm:text-lg leading-relaxed">
-                Discover how CleanErgy lithium iron phosphate batteries deliver clean, durable, and uncompromising power across every application.
-            </p>
+        <!-- TITLE: OUR GALLERY -->
+        <div class="text-center mb-6 sm:mb-8">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-black text-slate-900 tracking-wider uppercase font-['Plus_Jakarta_Sans',sans-serif]">
+                OUR GALLERY
+            </h1>
         </div>
 
-        <!-- FILTER TABS -->
-        <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 mb-12 sm:mb-14">
-
-            <?php
-            $gallery_filters = [
-                'all' => 'All Installations',
-                'marine' => 'Marine & Boats',
-                'rv' => 'RVs & Campers',
-                'solar' => 'Solar & Home Energy',
-                'offgrid' => 'Off-Grid & Cabins',
-                'fleet' => 'Specialized & Fleet'
-            ];
-            ?>
-
-            <?php foreach ($gallery_filters as $filter_key => $filter_label): ?>
-                <button
-                    type="button"
-                    data-filter="<?= htmlspecialchars($filter_key, ENT_QUOTES, 'UTF-8') ?>"
-                    aria-pressed="<?= $filter_key === 'all' ? 'true' : 'false' ?>"
-                    class="gallery-filter-btn px-5 sm:px-6 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 <?= $filter_key === 'all'
-                        ? 'active bg-[#12b3d6] text-white shadow-md shadow-cyan-500/20'
-                        : 'bg-slate-100 text-slate-700 hover:bg-slate-200' ?>">
-
-                    <?= htmlspecialchars($filter_label, ENT_QUOTES, 'UTF-8') ?>
-                </button>
-            <?php endforeach; ?>
-
+        <!-- TOP BUTTONS: ADD IMAGES / ADD VIDEOS -->
+        <div class="flex items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-12">
+            <button type="button" 
+                    class="gallery-tab-btn px-6 sm:px-7 py-2.5 sm:py-3 rounded text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm bg-[#12b3d6] text-white shadow-cyan-500/25" 
+                    data-tab="images">
+                ADD IMAGES
+            </button>
+            <button type="button" 
+                    class="gallery-tab-btn px-6 sm:px-7 py-2.5 sm:py-3 rounded text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm bg-slate-900 text-white hover:bg-[#12b3d6]" 
+                    data-tab="videos">
+                ADD VIDEOS
+            </button>
         </div>
 
-        <!-- GALLERY IMAGE GRID -->
-        <div id="gallery-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 items-stretch">
-
+        <!-- 4-COLUMN SQUARE IMAGE GRID -->
+        <div id="gallery-grid-images" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-5 mb-8 sm:mb-12">
             <?php foreach ($gallery_items as $index => $item): ?>
-
-                <button
-                    type="button"
-                    class="gallery-card group relative block w-full bg-slate-100 rounded-3xl overflow-hidden shadow-sm hover:shadow-2xl transition-all duration-300 h-64 sm:h-72 lg:h-80 cursor-pointer text-left"
-                    data-category="<?= htmlspecialchars($item['category'], ENT_QUOTES, 'UTF-8') ?>"
-                    data-index="<?= $index ?>"
-                    aria-label="View <?= htmlspecialchars($item['title'], ENT_QUOTES, 'UTF-8') ?>">
-
-                    <img
-                        src="<?= htmlspecialchars($item['image'], ENT_QUOTES, 'UTF-8') ?>"
-                        alt="<?= htmlspecialchars($item['title'], ENT_QUOTES, 'UTF-8') ?>"
-                        loading="lazy"
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
-
-                    <!-- HOVER OVERLAY -->
-                    <span class="absolute inset-0 bg-slate-950/25 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-
-                        <span class="w-12 h-12 rounded-full bg-white/95 text-slate-800 flex items-center justify-center shadow-xl transform scale-90 group-hover:scale-100 transition-all duration-300">
-
-                            <svg
-                                class="w-5 h-5 text-[#12b3d6]"
-                                fill="none"
-                                stroke="currentColor"
-                                stroke-width="2.5"
-                                viewBox="0 0 24 24">
-
-                                <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
+                <button type="button"
+                        class="gallery-card group relative block w-full aspect-square bg-slate-200 rounded-md sm:rounded-lg overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 cursor-pointer text-left focus:outline-none focus:ring-2 focus:ring-[#12b3d6]"
+                        data-index="<?= $index ?>"
+                        aria-label="View <?= htmlspecialchars($item['title'] ?? 'Installation Photo', ENT_QUOTES, 'UTF-8') ?>">
+                    <img src="<?= htmlspecialchars($item['image'], ENT_QUOTES, 'UTF-8') ?>"
+                         alt="<?= htmlspecialchars($item['title'] ?? 'Battery Installation', ENT_QUOTES, 'UTF-8') ?>"
+                         loading="lazy"
+                         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                    
+                    <!-- Hover Effect with subtle CleanErgy icon -->
+                    <span class="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                        <span class="w-11 h-11 rounded-full bg-white/95 text-[#12b3d6] flex items-center justify-center shadow-lg transform scale-90 group-hover:scale-100 transition-all duration-300">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v6m3-3H7"/>
                             </svg>
                         </span>
                     </span>
                 </button>
-
             <?php endforeach; ?>
         </div>
 
-        <!-- EMPTY STATE -->
-        <div id="gallery-empty-state" class="hidden text-center py-16">
-            <p class="text-slate-500 text-base">
-                No installations found in this category.
-            </p>
+        <!-- 4-COLUMN SQUARE VIDEOS GRID (SHOWN ON ADD VIDEOS TAB) -->
+        <div id="gallery-grid-videos" class="hidden grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5 sm:gap-4 lg:gap-5 mb-8 sm:mb-12">
+            <?php
+            $installation_videos = [
+                [
+                    'title' => 'Catamaran 48V Marine Lithium Bank Install',
+                    'thumb' => '/assets/yacht-faq.png'
+                ],
+                [
+                    'title' => 'Off-Grid Cabin Cold-Weather Battery Tour',
+                    'thumb' => 'https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1400&q=80'
+                ],
+                [
+                    'title' => 'Campervan High-Power Induction & 12V A/C Test',
+                    'thumb' => 'https://images.unsplash.com/photo-1523987355523-c7b5b0dd90a7?auto=format&fit=crop&w=1400&q=80'
+                ],
+                [
+                    'title' => 'Commercial Golf Cart 48V Drop-in Conversion',
+                    'thumb' => 'https://images.unsplash.com/photo-1535131749006-b7f58c99034b?auto=format&fit=crop&w=1400&q=80'
+                ]
+            ];
+            ?>
+            <?php foreach ($installation_videos as $vIndex => $vid): ?>
+                <div class="group relative block w-full aspect-square bg-slate-900 rounded-md sm:rounded-lg overflow-hidden shadow-xs hover:shadow-xl transition-all duration-300 text-left">
+                    <img src="<?= htmlspecialchars($vid['thumb'], ENT_QUOTES, 'UTF-8') ?>"
+                         alt="<?= htmlspecialchars($vid['title'], ENT_QUOTES, 'UTF-8') ?>"
+                         loading="lazy"
+                         class="w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-90 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent flex flex-col justify-between p-3 sm:p-4">
+                        <span class="self-end px-2 py-0.5 rounded text-[10px] font-extrabold uppercase tracking-wider bg-[#12b3d6] text-white">
+                            Video
+                        </span>
+                        <div class="text-white text-center">
+                            <div class="w-11 h-11 rounded-full bg-white text-[#12b3d6] flex items-center justify-center mx-auto mb-2 shadow-lg group-hover:scale-110 transition-transform">
+                                <svg class="w-5 h-5 translate-x-0.5" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M8 5v14l11-7z"/>
+                                </svg>
+                            </div>
+                            <p class="text-xs sm:text-sm font-bold line-clamp-1"><?= htmlspecialchars($vid['title'], ENT_QUOTES, 'UTF-8') ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
         </div>
+
+        <!-- BOTTOM BUTTONS: ADD IMAGES / ADD VIDEOS (EXACT REPEAT AS IN SCREENSHOT) -->
+        <div class="flex items-center justify-center gap-3 sm:gap-4">
+            <button type="button" 
+                    class="gallery-tab-btn px-6 sm:px-7 py-2.5 sm:py-3 rounded text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm bg-[#12b3d6] text-white shadow-cyan-500/25" 
+                    data-tab="images">
+                ADD IMAGES
+            </button>
+            <button type="button" 
+                    class="gallery-tab-btn px-6 sm:px-7 py-2.5 sm:py-3 rounded text-xs sm:text-sm font-extrabold uppercase tracking-wider transition-all duration-200 cursor-pointer shadow-sm bg-slate-900 text-white hover:bg-[#12b3d6]" 
+                    data-tab="videos">
+                ADD VIDEOS
+            </button>
+        </div>
+
     </div>
 </main>
 
@@ -410,9 +398,10 @@ document.addEventListener('DOMContentLoaded', function () {
         JSON_INVALID_UTF8_SUBSTITUTE
     ) ?>;
 
-    const filterBtns = document.querySelectorAll('.gallery-filter-btn');
+    const tabBtns = document.querySelectorAll('.gallery-tab-btn');
+    const imagesGrid = document.getElementById('gallery-grid-images');
+    const videosGrid = document.getElementById('gallery-grid-videos');
     const cards = document.querySelectorAll('.gallery-card');
-    const emptyState = document.getElementById('gallery-empty-state');
 
     const lightbox = document.getElementById('gallery-lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
@@ -425,57 +414,33 @@ document.addEventListener('DOMContentLoaded', function () {
     let previousFocus = null;
     let previousBodyOverflow = '';
 
-    // FILTER LOGIC
-    filterBtns.forEach(btn => {
-
+    // TAB SWITCHING LOGIC (ADD IMAGES / ADD VIDEOS)
+    tabBtns.forEach(btn => {
         btn.addEventListener('click', function () {
+            const tab = this.getAttribute('data-tab');
 
-            filterBtns.forEach(button => {
-
-                button.classList.remove(
-                    'active',
-                    'bg-[#12b3d6]',
-                    'text-white',
-                    'shadow-md',
-                    'shadow-cyan-500/20'
-                );
-
-                button.classList.add('bg-slate-100', 'text-slate-700');
-                button.setAttribute('aria-pressed', 'false');
-            });
-
-            this.classList.remove('bg-slate-100', 'text-slate-700');
-
-            this.classList.add(
-                'active',
-                'bg-[#12b3d6]',
-                'text-white',
-                'shadow-md',
-                'shadow-cyan-500/20'
-            );
-
-            this.setAttribute('aria-pressed', 'true');
-
-            const filter = this.dataset.filter;
-            activeFilteredIndices = [];
-
-            cards.forEach(card => {
-
-                const category = card.dataset.category;
-                const index = Number(card.dataset.index);
-                const matches = filter === 'all' || category === filter;
-
-                card.classList.toggle('hidden', !matches);
-
-                if (matches) {
-                    activeFilteredIndices.push(index);
+            tabBtns.forEach(b => {
+                const bTab = b.getAttribute('data-tab');
+                if (bTab === tab) {
+                    b.classList.remove('bg-slate-900', 'hover:bg-[#12b3d6]');
+                    b.classList.add('bg-[#12b3d6]', 'text-white', 'shadow-cyan-500/25');
+                } else {
+                    b.classList.remove('bg-[#12b3d6]', 'shadow-cyan-500/25');
+                    b.classList.add('bg-slate-900', 'text-white', 'hover:bg-[#12b3d6]');
                 }
             });
 
-            emptyState.classList.toggle(
-                'hidden',
-                activeFilteredIndices.length > 0
-            );
+            if (tab === 'videos') {
+                imagesGrid?.classList.add('hidden');
+                imagesGrid?.classList.remove('grid');
+                videosGrid?.classList.remove('hidden');
+                videosGrid?.classList.add('grid');
+            } else {
+                videosGrid?.classList.add('hidden');
+                videosGrid?.classList.remove('grid');
+                imagesGrid?.classList.remove('hidden');
+                imagesGrid?.classList.add('grid');
+            }
         });
     });
 

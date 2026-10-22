@@ -64,6 +64,26 @@ function get_default_gallery_items() {
             'specs' => '36V (3x 12V 100Ah Series) Setup',
             'desc' => 'Tournament-grade lightweight battery pack maintaining steady voltage throughout 12-hour fishing days without voltage drops or trolling sluggishness.',
             'badge_color' => 'bg-[#12b3d6]'
+        ],
+        [
+            'id' => 7,
+            'title' => 'Catamaran Luxury Marine Energy System',
+            'category' => 'marine',
+            'category_name' => 'Marine & Boats',
+            'image' => 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1400&q=80',
+            'specs' => '48V 200Ah High-Efficiency Marine Lithium',
+            'desc' => 'Offshore catamaran battery installation powering refrigeration, navigation avionics, watermaker and air conditioning completely silent at anchor.',
+            'badge_color' => 'bg-[#12b3d6]'
+        ],
+        [
+            'id' => 8,
+            'title' => 'High-Capacity Off-Grid Solar Ground Mount',
+            'category' => 'solar',
+            'category_name' => 'Solar & Home Energy',
+            'image' => 'https://images.unsplash.com/photo-1508873696983-2df5293cb395?auto=format&fit=crop&w=1400&q=80',
+            'specs' => '51.2V 400Ah Multi-Rack Industrial Lithium',
+            'desc' => 'Turnkey solar array pairing high-efficiency PV panels with commercial-grade CleanErgy lithium storage for agricultural and off-grid facility resilience.',
+            'badge_color' => 'bg-[#239B52]'
         ]
     ];
 }
@@ -205,21 +225,6 @@ function load_gallery_items() {
         return get_default_gallery_items();
     }
 
-    // Check if response is HTML (Google sign-in page, permission denied, etc.)
-    $trimmed_check = strtolower(substr(ltrim((string)$csv_content), 0, 150));
-    if (strpos($trimmed_check, '<!doctype') !== false || 
-        strpos($trimmed_check, '<html') !== false || 
-        strpos($trimmed_check, '<head') !== false || 
-        strpos((string)$csv_content, 'accounts.google.com') !== false || 
-        strpos((string)$csv_content, 'ServiceLogin') !== false) {
-        if (file_exists($cache_file)) {
-            $cached_data = @file_get_contents($cache_file);
-            $items = json_decode($cached_data, true);
-            if (is_array($items) && count($items) > 0) return $items;
-        }
-        return get_default_gallery_items();
-    }
-
     // Parse CSV
     $lines = preg_split('/\r\n|\r|\n/', trim($csv_content));
     $parsed_items = [];
@@ -240,14 +245,8 @@ function load_gallery_items() {
         $is_first_row = false;
 
         $image_url = trim($row[0]);
-        // Ignore row if not a valid image link
+        // Ignore row if not an image link
         if (empty($image_url) || $image_url === '#') continue;
-        if (!preg_match('#^(https?://|/assets/|/images/|/|\./)#i', $image_url) || 
-            strpos($image_url, '<') !== false || 
-            strpos($image_url, '>') !== false || 
-            strpos($image_url, ' ') !== false) {
-            continue;
-        }
 
         $raw_category = isset($row[1]) ? trim($row[1]) : '';
         $category = normalize_gallery_category($raw_category);
