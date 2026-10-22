@@ -55,7 +55,7 @@
     ?>
 
     <!-- 1. Hero Banner (Exact Same Size & Dimensions as Homepage Slider) -->
-    <section class="relative w-full min-h-[500px] sm:min-h-[580px] md:min-h-[640px] lg:min-h-[700px] h-auto sm:h-[90vh] md:h-screen md:max-h-[1000px] overflow-hidden bg-slate-900 flex items-center">
+    <section class="relative w-full min-h-[580px] sm:min-h-[660px] h-[92vh] sm:h-screen max-h-[1000px] overflow-hidden bg-slate-900 flex items-center">
         <!-- Background Image Edge-to-Edge -->
         <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2070&q=80" 
              alt="Clean Energy Battery Knowledge Hub Banner" 
@@ -66,18 +66,18 @@
         <div class="absolute inset-0 bg-black/20"></div>
 
         <!-- Banner Content with exact homepage slider padding & layout -->
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 pt-24 sm:pt-32 pb-16 sm:pb-24">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 pt-24 sm:pt-32 pb-14 sm:pb-20">
             <div class="max-w-3xl">
                 <span class="inline-block text-[11px] sm:text-sm font-bold tracking-[0.2em] text-[#38bdf8] uppercase mb-2 sm:mb-3 drop-shadow">
                     CLEANENERGY KNOWLEDGE HUB
                 </span>
                 
-                <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-[62px] text-white leading-[1.15] sm:leading-[1.1] font-extrabold tracking-tight mb-3 sm:mb-5 drop-shadow-md">
+                <h1 class="text-3xl sm:text-5xl lg:text-[62px] text-white leading-[1.12] sm:leading-[1.1] font-extrabold tracking-tight mb-4 sm:mb-5 drop-shadow-md">
                     <span class="italic block">Powering Your Life with</span>
                     <span class="italic font-['Playfair_Display',serif] font-semibold block text-slate-100">Advanced Battery Guides</span>
                 </h1>
 
-                <p class="text-xs sm:text-base lg:text-lg text-white/95 max-w-2xl font-normal leading-relaxed drop-shadow">
+                <p class="text-sm sm:text-lg text-white/95 max-w-2xl font-normal leading-relaxed drop-shadow">
                     Practical answers, in-depth comparisons, installation advice and technical insights for marine, RV, solar and off-grid power systems.
                 </p>
             </div>

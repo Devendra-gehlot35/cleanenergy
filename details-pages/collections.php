@@ -111,7 +111,7 @@
     ?>
 
     <!-- 1. Hero Banner (Exact Same Size as All Other Pages, matching Categories PDF) -->
-    <section class="relative w-full min-h-[460px] sm:min-h-[560px] md:min-h-[640px] lg:min-h-[700px] h-auto sm:h-[85vh] md:h-screen md:max-h-[1000px] overflow-hidden bg-slate-900 flex flex-col justify-between items-center text-center">
+    <section class="relative w-full min-h-[580px] sm:min-h-[660px] h-[92vh] sm:h-screen max-h-[1000px] overflow-hidden bg-slate-900 flex flex-col justify-between items-center text-center">
         
         <!-- Background Image Edge-to-Edge -->
         <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=2070&q=80" 
@@ -126,7 +126,7 @@
 
         <!-- Big Centered "Categories" Title (Exact PDF Match) -->
         <div class="relative z-10 px-4 my-auto">
-            <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold text-white tracking-wide drop-shadow-lg">
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-wide drop-shadow-lg">
                 Categories
             </h1>
         </div>

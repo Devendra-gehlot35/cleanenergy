@@ -5,29 +5,29 @@
 
 <!-- Product Enquiry Popup Modal -->
 <div id="website-enquiry-modal" 
-     class="fixed inset-0 z-[9999] hidden items-center justify-center p-3 sm:p-5 md:p-6 bg-slate-950/70 backdrop-blur-sm overflow-y-auto transition-opacity duration-300"
+     class="fixed inset-0 z-[9999] hidden items-center justify-center p-3 sm:p-5 bg-slate-950/65 backdrop-blur-sm transition-opacity duration-300"
      role="dialog" 
      aria-modal="true" 
      aria-labelledby="enquiry-modal-title">
 
     <!-- Modal Dialog Box -->
     <div id="enquiry-modal-card" 
-         class="relative w-full max-w-4xl lg:max-w-5xl my-auto max-h-[92vh] flex flex-col bg-white rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden border border-slate-100 transform transition-all duration-300 scale-95 opacity-0">
+         class="relative w-full max-w-4xl lg:max-w-5xl bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-100 transform transition-all duration-300 scale-95 opacity-0">
         
         <!-- Close Button (Top-Right) -->
         <button type="button" 
                 onclick="closeEnquiryModal()" 
                 aria-label="Close Modal" 
-                class="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white/95 sm:bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all shadow-md sm:shadow-sm focus:outline-none cursor-pointer">
+                class="absolute top-4 right-4 z-30 w-10 h-10 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 hover:text-slate-900 flex items-center justify-center transition-all shadow-sm focus:outline-none cursor-pointer">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
             </svg>
         </button>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 items-stretch md:min-h-[500px] overflow-y-auto w-full">
+        <div class="grid grid-cols-1 md:grid-cols-12 items-stretch min-h-[500px]">
             
-            <!-- Left Side: Dynamic Product Battery Image (Adaptive height on mobile, full height on desktop) -->
-            <div class="relative md:col-span-5 w-full h-36 sm:h-48 md:h-full md:min-h-full shrink-0 overflow-hidden bg-slate-900">
+            <!-- Left Side: Dynamic Product Battery Image (Full-bleed, zero padding) -->
+            <div class="relative md:col-span-5 w-full h-full min-h-[280px] md:min-h-full overflow-hidden bg-slate-900">
                 <img id="enquiry-modal-img" 
                      src="https://cdn.shopify.com/s/files/1/0739/1887/3849/files/51-2v-300ah-15-3kwh-lithium-phosphate-home-power-storage-battery-946.webp?v=1781768581" 
                      data-default-src="https://cdn.shopify.com/s/files/1/0739/1887/3849/files/51-2v-300ah-15-3kwh-lithium-phosphate-home-power-storage-battery-946.webp?v=1781768581"
@@ -36,7 +36,7 @@
             </div>
 
             <!-- Right Side: Contact Inputs Form -->
-            <div class="md:col-span-7 p-4 sm:p-7 lg:p-9 flex flex-col justify-center bg-white">
+            <div class="md:col-span-7 p-6 sm:p-8 lg:p-10 flex flex-col justify-center bg-white">
                 
                 <!-- Heading & Selected Battery Name (No Quick Enquiry, No Subtext) -->
                 <div class="mb-5">

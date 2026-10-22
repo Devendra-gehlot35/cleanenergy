@@ -111,7 +111,7 @@ $article = $articles[$id] ?? $articles['1'];
     ?>
 
     <!-- 1. Top Banner (Exact Same Size as Contact Us and All Other Pages) -->
-    <section class="relative w-full min-h-[460px] sm:min-h-[560px] md:min-h-[640px] lg:min-h-[700px] h-auto sm:h-[85vh] md:h-screen md:max-h-[1000px] overflow-hidden bg-slate-900 flex items-center">
+    <section class="relative w-full min-h-[580px] sm:min-h-[660px] h-[92vh] sm:h-screen max-h-[1000px] overflow-hidden bg-slate-900 flex items-center">
         <img src="<?= htmlspecialchars($article['image']) ?>" 
              alt="<?= htmlspecialchars($article['title']) ?>" 
              class="w-full h-full object-cover object-center block">
