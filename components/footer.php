@@ -9,7 +9,7 @@
             <div class="lg:col-span-5 flex flex-col justify-between space-y-6">
                 <div>
                     <!-- Logo -->
-                    <a href="/index.php#home" class="inline-block mb-4">
+                    <a href="/" class="inline-block mb-4">
                         <img src="https://cleanergybattery.com/cdn/shop/files/Logo-of-cleanergy-transparent_f56c8e49-d76a-482d-bf49-716e5b7c4da5.png?height=160&v=1784631413" 
                              alt="CleanErgy Battery Logo" 
                              class="h-[62px] sm:h-[78px] w-auto object-contain">
@@ -101,7 +101,7 @@
                     Quick Links
                 </h4>
                 <ul class="space-y-2.5 text-slate-700 text-xs sm:text-sm">
-                    <li><a href="/index.php#home" class="hover:text-cyan-900 transition-colors">Home</a></li>
+                    <li><a href="/" class="hover:text-cyan-900 transition-colors">Home</a></li>
                     <li><a href="/about.php" class="hover:text-cyan-900 transition-colors">About Us</a></li>
                     <li><a href="/contact.php" class="hover:text-cyan-900 transition-colors">Contact Us</a></li>
                     <li><a href="/gallery.php" class="hover:text-cyan-900 transition-colors">Gallery</a></li>
